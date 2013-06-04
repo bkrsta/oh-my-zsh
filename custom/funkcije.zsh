@@ -17,3 +17,27 @@ relaunch () {
         open -a $app
     done
 }
+
+subl () {
+    open -a /Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2 "${1}"
+}
+
+lap () {
+  ssh lap "export DISPLAY=:0.0;
+    xrandr --output HDMI-0 --auto && \
+    xrandr --output LVDS --off && \
+    killall synergyc &> /dev/null; \
+    synergyc --yscroll 15 -n edge 192.168.1.5 > /dev/null && echo OK"
+}
+
+lap-off () {
+  ssh lap "killall synergyc"
+}
+
+c () {
+  cd ~/Projects
+  if [ "x$1" != "x" ]; then
+    cd $1
+  fi
+}
+
